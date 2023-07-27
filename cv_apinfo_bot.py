@@ -1,5 +1,4 @@
 # A small automation script for sending resumes by gmail. Through the pyautogui library, using two screens and the placements on the APinfo and gmail site.
-
 # Importe das bibliotecas
 
 import pyautogui
