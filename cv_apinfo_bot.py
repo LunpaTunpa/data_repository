@@ -1,7 +1,6 @@
 # Importe das bibliotecas
 
 import pyautogui
-from time import sleep
 
 # Apresentação
 
