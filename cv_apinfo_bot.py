@@ -4,7 +4,7 @@ import pyautogui
 
 # Apresentação
 
-print('\n\nHello, welcome to cv bot. \n')
+print('\n\nHello, welcome to cv APinfo bot. \n')
 
 # Entrada de dados
 
