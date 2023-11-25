@@ -1,0 +1,53 @@
+--- CRIAÇÃO DE TABELAS ---
+
+CREATE TABLE medico (
+   crm NUMBER PRIMARY KEY,
+   nome VARCHAR2(80)
+);
+
+CREATE TABLE consulta (
+   id_consulta NUMBER(10) PRIMARY KEY,
+   data DATE,
+   medico_crm NUMBER,
+   paciente_cpf NUMBER(11),
+   relatorio VARCHAR2(4000),
+   CONSTRAINT consulta_PK PRIMARY KEY (id_consulta),
+   CONSTRAINT consulta_medico_FK FOREIGN KEY (medico_crm) REFERENCES medico(crm),
+   CONSTRAINT consulta_paciente_FK FOREIGN KEY (paciente_cpf) REFERENCES paciente(cpf)
+);
+
+CREATE TABLE paciente (
+   cpf NUMBER(11) PRIMARY KEY,
+   nome VARCHAR2(80)
+);
+
+--- ENTRADA DE DADOS EM PACIENTE ---
+
+INSERT INTO paciente (cpf, nome) VALUES (12345678901, 'Antonio Salas');
+INSERT INTO paciente (cpf, nome) VALUES (18930049955, 'Maria Gonzaga');
+INSERT INTO paciente (cpf, nome) VALUES (11233990284, 'Mateus Rodrigues');
+INSERT INTO paciente (cpf, nome) VALUES (14399872313, 'Rodrigo Antunes');
+INSERT INTO paciente (cpf, nome) VALUES (11223923554, 'Juliana Magalhães');
+
+--- ENTRADA DE DADOS EM MEDICO ---
+
+INSERT INTO medico (crm, nome) VALUES (12345, 'Marta Soares');
+INSERT INTO medico (crm, nome) VALUES (67903, 'Diogo França');
+INSERT INTO medico (crm, nome) VALUES (12304, 'Oton Farias');
+INSERT INTO medico (crm, nome) VALUES (46876, 'Arthur Aguiar');
+INSERT INTO medico (crm, nome) VALUES (45686, 'Leticia Alves');
+
+--- VIZUALIZAÇÃO ---
+
+CREATE VIEW vw_paciente_medico AS
+SELECT
+    p.cpf AS paciente_cpf,
+    p.nome AS nome_paciente,
+    m.crm AS medico_crm,
+    m.nome AS nome_medico
+FROM
+    paciente p
+JOIN
+    medico m ON p.cpf = m.crm;
+
+SELECT * FROM vw_paciente_medico;
